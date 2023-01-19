@@ -1,8 +1,8 @@
-import React from 'react'
-import { useState } from 'react';
-import Card from '../components/Card';
+import React, { useState } from 'react';
+import Cards from '../components/Cards';
 import Pagination from '../components/Pagination';
-import { useGetCards } from '../hooks/api'
+import Search from '../components/Search';
+import { useGetCards } from '../hooks/api';
 
 export default function CardsPage() {
     const [search, setSearch] = useState('');
@@ -13,18 +13,8 @@ export default function CardsPage() {
             <h2 className='text-center'>
                 Cards
             </h2>
-            <div className='py-3'>
-                <input className='form-control' placeholder='Search' value={search} onChange={e => {
-                    setSearch(e.currentTarget.value);
-                }} />
-            </div>
-            <div className='border border-dark'>
-                {cards.map(card => {
-                    return (
-                        <Card key={card.id} card={card} />
-                    )
-                })}
-            </div>
+            <Search search={search} setSearch={setSearch} />
+            <Cards cards={cards} />
             <div className='mt-2'>
                 <Pagination
                     page={page + 1}
