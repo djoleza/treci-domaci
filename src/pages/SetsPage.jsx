@@ -16,17 +16,23 @@ export default function SetsPage() {
             </h2>
             <Search search={search} setSearch={setSearch} />
             {
-                sets.map(set => {
-                    return (
-                        <Set key={set.set_code} set={set} />
-                    )
-                })
+                sets
+                    .filter(set => {
+                        return set.set_name.includes(search) ||
+                            set.set_code.includes(search)
+                    })
+                    .slice(10 * page, 10 * (page + 1))
+                    .map(set => {
+                        return (
+                            <Set key={set.set_code} set={set} />
+                        )
+                    })
             }
             <div className='mt-2'>
                 <Pagination
                     page={page + 1}
                     setPage={val => setPage(val - 1)}
-                    size={20}
+                    size={10}
                     total={sets.length}
                 />
             </div>
