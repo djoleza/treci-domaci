@@ -14,7 +14,6 @@ function App() {
 
         <Route path='/' element={<CardsPage />} />
         <Route path='/sets' element={<SetsPage />} />
-        <Route path='/deck' element={<DeckPage />} />
       </Routes>
     </BrowserRouter>
   );

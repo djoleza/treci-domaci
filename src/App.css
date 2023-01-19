@@ -1,1 +1,14 @@
-.cardWrapper {}
+.card-set {
+    cursor: pointer;
+}
+
+.cardWrapper {
+    max-height: 300px;
+    overflow-x: auto;
+    transition: all 200ms;
+    display: none;
+}
+
+.card-active {
+    display: block;
+}

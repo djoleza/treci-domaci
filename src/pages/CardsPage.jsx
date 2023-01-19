@@ -7,7 +7,7 @@ import { useGetCards } from '../hooks/api';
 export default function CardsPage() {
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(0);
-    const { cards, total } = useGetCards(search, undefined, page);
+    const { cards, total } = useGetCards(search, undefined, page, 20);
     return (
         <div className='container mt-2 '>
             <h2 className='text-center'>

@@ -11,7 +11,7 @@ const handler = (url, params, controller) => {
     })
 }
 
-export function useGetCards(fname = undefined, cardset = undefined, page = 0) {
+export function useGetCards(fname = undefined, cardset = undefined, page = undefined, num = undefined) {
     const [cards, setCards] = useState([]);
     const [total, setTotal] = useState(0);
 
@@ -20,8 +20,8 @@ export function useGetCards(fname = undefined, cardset = undefined, page = 0) {
         handler('/cardinfo.php', {
             fname,
             cardset,
-            num: 20,
-            offset: 20 * page
+            num,
+            offset: num ? 20 * page : undefined
         }, controller).then(res => {
             setCards(res.data.data);
             setTotal(res.data.meta.total_rows)
@@ -29,7 +29,21 @@ export function useGetCards(fname = undefined, cardset = undefined, page = 0) {
         return () => {
             controller.abort();
         }
-    }, [fname, cardset, page])
+    }, [fname, cardset, page, num])
 
     return { cards, total }
+}
+
+export function useGetSets() {
+    const [sets, setSets] = useState([])
+    useEffect(() => {
+        const controller = new AbortController();
+        handler('/cardsets.php', undefined, controller).then(res => {
+            setSets(res.data);
+        })
+        return () => {
+            controller.abort();
+        }
+    }, [])
+    return sets
 }

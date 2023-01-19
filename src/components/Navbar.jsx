@@ -13,9 +13,6 @@ export default function Navbar() {
                     <li className="nav-item mx-auto">
                         <NavLink className='nav-link' to='/sets'>Sets</NavLink>
                     </li>
-                    <li className="nav-item mx-auto">
-                        <NavLink className='nav-link' to='/deck'>Deck</NavLink>
-                    </li>
                 </ul>
             </div>
         </nav>
