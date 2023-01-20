@@ -11,7 +11,7 @@ export default function Pagination({
         <nav aria-label="Page navigation example">
             <ul className="pagination">
                 <li onClick={() => {
-                    setPage(prev => Math.max(1, prev - 1))
+                    setPage(Math.max(1, page - 1))
                 }} className="page-item">
                     <div className="page-link">
                         <span aria-hidden="true">&laquo;</span>
@@ -35,7 +35,7 @@ export default function Pagination({
                     }
                 </div>
                 <li onClick={() => {
-                    setPage(prev => Math.min(prev + 1, totalPages))
+                    setPage(Math.min(page + 1, totalPages))
                 }} className="page-item">
                     <div className="page-link">
                         <span aria-hidden="true">&raquo;</span>

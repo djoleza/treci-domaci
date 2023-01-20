@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { debounce } from 'lodash'
 axios.defaults.baseURL = 'https://db.ygoprodeck.com/api/v7'
 
 
@@ -21,7 +20,7 @@ export function useGetCards(fname = undefined, cardset = undefined, page = undef
             fname,
             cardset,
             num,
-            offset: num ? 20 * page : undefined
+            offset: num ? num * page : undefined
         }, controller).then(res => {
             setCards(res.data.data);
             setTotal(res.data.meta.total_rows)
